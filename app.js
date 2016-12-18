@@ -2,7 +2,7 @@ express = require('express'),
 app = express(),
 router = express.Router(),
 pgp = require('pg-promise')(/*initialization options*/),
-db = pgp('postgres://root:password@localhost:5432/themg')
+dbpgp = pgp('postgres://root:password@localhost:5432/themg')
 
 //***** BASIC ROUTES
     var index = require('./app/js/routes/index.js')
@@ -18,7 +18,7 @@ db = pgp('postgres://root:password@localhost:5432/themg')
 
     app.use(function(err, req, res, next) {
         console.error(err.stack)
-        res.status(500).send('Something broke!')
+        res.status(500).send(err.stack)
     })
 
 //***** START THE SERVER

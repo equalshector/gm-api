@@ -1,12 +1,12 @@
 // theboard, this is the place where the
 router.get('/', function (req, res) {
 
-    db.one('SELECT $1 AS value', 123)
+    dbpgp.one('SELECT $1 AS value', 123)
         .then(function (data) {
-            res.send('DATA:'+data.value)
+            res.send({status: 'success', data: data.value})
         })
         .catch(function (error) {
-            res.send('ERROR:'+error)
+            res.send({status: 'error', data: error})
         })
 })
 
